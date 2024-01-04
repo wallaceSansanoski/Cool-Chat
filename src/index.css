@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@1,300&family=Rampart+One&display=swap');
+
+*{
+  font-family:'Nunito', sans-serif; ;
+}
+body {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: #a7bcff;
+}
+
+.wrapperForm {
+  background-color: #fff;
+  min-height: 450px;
+  max-width: 360px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5%;
+  justify-content: space-evenly;
+}
+
+.form {
+  max-width: 360px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+}
+
+input {
+  min-width: 200px;
+  border: none;
+  border-bottom: 1px solid black;
+  outline: none;
+}
+button {
+  width: 100%;
+  border: none;
+  background-color: #a7bcff;
+  height: 30px;
+  color: #fff;
+  font-size: 17px;
+  cursor: pointer;
+}
+
+input::placeholder {
+  font-size: 17px;
+}
+p{
+  margin: 0px;
+}
+
+.warningMessage{
+  background-color: #ff5469;
+  max-width: 360px;
+  color: #fff;
+  padding: 5px 10px;
+}
+
+.successMessage {
+  background-color: green;
+  max-width: 360px;
+  color: #fff;
+  padding: 5px 10px;
+}

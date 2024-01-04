@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Rampart+One&display=swap');
+
+.wrapperTitle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 90px;
+}
+
+.title { 
+    font-family: 'Rampart One', sans-serif;
+    font-size: 40px;
+    font-weight: bold;
+}
+.subTitle{
+    font-size: 20px;
+}
+
+.labelWrapper {
+    position: relative;
+}
+
+.icon {
+    font-size: 20px;
+    opacity: 0.6;
+    position: absolute;
+    right: 2px;
+}
+
+input {
+    font-size: 20px;
+}
+
+.containerAvatar{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    gap: 15px;
+    cursor: pointer;
+}
+
+.avatarImg{
+    width: 20px;
+}
+
+.containerAvatar span {
+    font-size: 13px;
+}
+
+.barUpload {
+    background-color: aquamarine;
+    height: 5px;
+    display: block;
+}

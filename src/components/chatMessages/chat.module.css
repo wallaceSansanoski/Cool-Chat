@@ -1,0 +1,6 @@
+.containerMessage {
+    background-color: #c9d3ff;
+    flex-grow: 2;
+    display: flex;
+    flex-direction: column;
+}

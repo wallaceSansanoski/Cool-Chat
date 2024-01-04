@@ -1,0 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Rampart+One&display=swap');
+
+.wrapperContainer{
+    display: flex;
+    flex-direction: column;
+    min-width: 270px;
+    overflow: hidden;
+    height: 600px;
+}

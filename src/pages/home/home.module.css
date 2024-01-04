@@ -1,0 +1,12 @@
+.containerChat{
+    display: block;
+    width: 300px;
+}
+
+@media(min-width : 380px){
+    .containerChat {
+        width: 800px;
+        max-height: 600px;
+        display: flex;
+    }
+}

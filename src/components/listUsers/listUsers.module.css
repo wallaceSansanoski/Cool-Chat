@@ -1,0 +1,22 @@
+.wrapperContacts {
+    background-color: #2f2d52;
+    overflow-y: scroll;
+    flex-grow: 2;
+    /* min-height: 465px; */
+}
+
+.wrapperContacts::-webkit-scrollbar {
+    width: 7px;
+}
+  
+.wrapperContacts::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+.wrapperContacts::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
+.wrapperContacts::-webkit-scrollbar-corner{
+    display: none;
+}

@@ -1,0 +1,28 @@
+.wrapperMessage{
+    height: 600px;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.divC {
+    height: 600px;
+}
+
+.wrapperMessage::-webkit-scrollbar {
+    width: 7px;
+}
+  
+.wrapperMessage::-webkit-scrollbar-thumb {
+    background: #2323;
+    opacity: 0.9;
+}
+
+.wrapperMessage::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
+.wrapperMessage::-webkit-scrollbar-corner{
+    display: none;
+}

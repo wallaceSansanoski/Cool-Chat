@@ -1,0 +1,30 @@
+.wrapperHeader {
+    background-color: #3e3c61;
+    opacity: 0.7;
+    height: 82px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+.wrapperHeader > p {
+    color: #fff;
+    margin-left: 10px;
+    font-weight: bolder;
+}
+
+.optionsHead {
+    margin-right: 20px;
+    font-size: 20px;
+    color: #fff;
+    width: 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    justify-content: space-between;
+    cursor: pointer;
+}

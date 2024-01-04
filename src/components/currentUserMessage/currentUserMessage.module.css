@@ -1,0 +1,34 @@
+.boxMessage {
+  display: flex;
+  gap: 10px;
+  max-width: 250px;
+  font-size: 14px;
+  background-color: #fff;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 0 10px 10px 10px;
+}
+
+.currentUserImage {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.containerMessage {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+}
+.time {
+  font-size: 10px;
+}
+
+.messageUser {
+  font-weight: bold;
+  font-size: 17px;
+}
+
+.imageUser {
+  width: 200px;
+}

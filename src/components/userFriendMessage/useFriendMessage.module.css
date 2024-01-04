@@ -1,0 +1,46 @@
+.boxMessage {
+  max-width: 150px;
+  font-size: 14px;
+  background-color: #fff;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 10px 0 10px 10px;
+}
+
+
+.boxMessage {
+  display: flex;
+  gap: 10px;
+  max-width: 250px;
+  font-size: 14px;
+  background-color: #fff;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 10px 0 10px 10px;
+}
+
+.currentUserImage {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.containerMessage {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.time {
+  font-size: 10px;
+}
+
+.messageUser {
+  font-weight: bolder;
+  font-size: 17px;
+}
+
+.imageUser {
+  width: 200px;
+}

@@ -1,0 +1,47 @@
+.form {
+    position: relative;
+    overflow: hidden;
+}
+.form input{
+    width: 100%;
+    padding: 0px;
+    outline: none;
+    height: 50px;
+    padding-left: 10px;
+}
+
+.form input::placeholder {
+    padding: 10px;
+}
+
+.btn   {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    background-color:#a7bcff ;
+    font-size: 15px;
+    width: 50px;
+    height: 30px;
+    color: #fff;
+    display: inline-block;
+    line-height: 30px;
+    text-align: center;
+    cursor: pointer;
+}
+.attach {
+    position: absolute;
+    right: 75px;
+    top: 13px;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0.4;
+}
+
+.sendImage {
+    position: absolute;
+    right: 100px;
+    top: 13px;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0.4;
+}

@@ -1,0 +1,38 @@
+.wrapperTitles {
+    min-height: 85px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #2f2d52;
+}
+
+.infoUser {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 15px;
+}
+
+.btnLogout {
+    font-size: 13px;
+    width: 60px;
+    background-color: #a7bcff;
+    border-radius: 5px;
+}
+
+.imageAvatar {
+    background-position: center;
+    background-size: contain;
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+}
+.userName{
+    font-size: 16px;
+    color: #fff;
+    font-weight: bolder;
+}
+.nameApp {
+    font-family: 'Rampart One', sans-serif;
+    color: #fff;
+}
