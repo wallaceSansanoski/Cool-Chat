@@ -1,8 +1,7 @@
 .wrapperContacts {
-    background-color: #2f2d52;
+    background-color:#114b44;
     overflow-y: scroll;
     flex-grow: 2;
-    /* min-height: 465px; */
 }
 
 .wrapperContacts::-webkit-scrollbar {

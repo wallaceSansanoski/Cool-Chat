@@ -1,15 +1,17 @@
 import style from './SingleContact.module.css'
 import { doc, setDoc, getDoc } from "firebase/firestore";
 import { db } from '../../service/db';
-import { useContext, useState, useEffect } from 'react';
+import { useContext } from 'react';
 import { authContext } from '../../AuthContext/authContext';
 import { CurrentChatContext } from '../../AuthContext/currentChatContext';
+import { ContextStyle } from '../../ContextStyle/contextStyle';
 
 
 const SingleContact = ({ listUsers }) => {
 
     const currentUser = useContext(authContext)
-    const { dispatch } = useContext(CurrentChatContext)
+    const { dispatch : changeUserChatContextFn } = useContext(CurrentChatContext)
+    const { dispatch } = useContext(ContextStyle)
 
     const handleClickUser = async (e) => {
 
@@ -17,11 +19,11 @@ const SingleContact = ({ listUsers }) => {
 
         try {
 
-            const docRef = doc(db, "users", userUID);
-            const docSnap = await getDoc(docRef);
+            const docRefUser = doc(db, "users", userUID);
+            const docSnap = await getDoc(docRefUser);
             const combinedID = currentUser.uid + docSnap.data().uid
 
-            dispatch({ type: 'CHANGE_USER', payload: docSnap.data() })
+            changeUserChatContextFn({ type: 'CHANGE_USER', payload: docSnap.data() })
 
             const res = await getDoc(doc(db, "chats", combinedID))
 
@@ -30,6 +32,8 @@ const SingleContact = ({ listUsers }) => {
                     'messages': []
                 })
             }
+
+            dispatch({ type : 'CHANGE_TRUE'})
 
         } catch (error) {
             console.log(error.message)

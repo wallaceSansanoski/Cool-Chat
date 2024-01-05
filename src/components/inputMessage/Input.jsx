@@ -5,9 +5,9 @@ import { useContext, useState } from 'react';
 import { CurrentChatContext } from '../../AuthContext/currentChatContext';
 import { authContext } from '../../AuthContext/authContext';
 import { doc, updateDoc, arrayUnion, Timestamp } from "firebase/firestore";
+import { getDownloadURL, getStorage, ref, uploadBytesResumable } from 'firebase/storage';
 import { db } from '../../service/db';
 import { v4 as uuidv4 } from 'uuid';
-import { getDownloadURL, getStorage, ref, uploadBytesResumable } from 'firebase/storage';
 
 const InputMessage = () => {
 
@@ -21,10 +21,13 @@ const InputMessage = () => {
     const handleSubmit = async e => {
         e.preventDefault()
 
-        if(!text.length && image.length === 0 ) return     
+        const isEmptyInput = !text.length && image.length === 0 
+
+        if(isEmptyInput) return     
 
         const combainedID =  currentUser.uid + userWhoWannaTalk.user.uid 
         const docRef = doc(db, "chats", combainedID);
+
         if (image) {
             
             const storage = getStorage();
@@ -99,7 +102,12 @@ const InputMessage = () => {
                 </label>
 
                 <span key='attach' className={style.attach}> <IoIosAttach/> </span>
-                <button disabled={loadingImage ? true : false} className={style.btn} style={{ opacity : loadingImage ? .3 : .9}} > Send </button>
+                <button
+                    disabled={loadingImage ? true : false}
+                    className={style.btn}
+                    style={{ opacity: loadingImage ? .3 : .9 }}
+                > Send 
+                </button>
             </form>
         </div>
     )

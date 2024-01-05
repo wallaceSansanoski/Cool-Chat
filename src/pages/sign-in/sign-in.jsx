@@ -1,34 +1,33 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import style from './sign-in.module.css'
 import { AiFillEye } from "react-icons/ai";
 import { AiFillEyeInvisible } from "react-icons/ai";
-import { useRef, useState} from 'react';
+import { useRef, useState } from 'react';
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../../service/db';
-import { useNavigate } from 'react-router-dom';
 
 const SignIn = () => {
 
-    const ref = useRef()
-    const [ toggle, setToggle ] = useState(false)
-    const [ userPassword, setUserPassword ] = useState("")
-    const [ userEmail, setUserEmail ] = useState("")
-    const [ errorMessage, setErrorMessage] = useState(null)
-    const [ createUserMessage, setCreateUserMessage ] = useState(null)
     const navigate = useNavigate()
+    const ref = useRef()
 
-    const handleHideOrShowPassword = async (e) => {
+    const [toggle, setToggle] = useState(false)
+    const [userPassword, setUserPassword] = useState("")
+    const [userEmail, setUserEmail] = useState("")
+    const [errorMessage, setErrorMessage] = useState(null)
 
-        if(!toggle){
+    const handleHideOrShowPassword = () => {
+
+        if (!toggle) {
             ref.current.type = 'text'
             setToggle(true)
-            return 
+            return
         }
 
-        if(toggle) {
+        if (toggle) {
             ref.current.type = 'password'
             setToggle(false)
-            return 
+            return
         }
     }
 
@@ -36,18 +35,18 @@ const SignIn = () => {
     const handleSignin = async (e) => {
         e.preventDefault()
 
-        try{
-            const userRegister = await signInWithEmailAndPassword(auth, userEmail, userPassword)
-            setCreateUserMessage('Create user Sucessfully')
+        try {
+            await signInWithEmailAndPassword(auth, userEmail, userPassword)
 
-        }catch(error) {
-            if(error.message.includes('auth/invalid-login-credentials')){
+        } catch (error) {
+          
+            if (error.message.includes('auth/invalid-login-credentials')) {
                 setErrorMessage('Invalid-login-credentials')
-                return 
+                return
             }
-            if(error.message.includes('auth/invalid-email')){
+            if (error.message.includes('auth/invalid-email')) {
                 setErrorMessage('Invalid Format email')
-                return 
+                return
             }
         }
 
@@ -88,14 +87,9 @@ const SignIn = () => {
                 </label>
                 <button>Sign-in</button>
             </form>
-            {errorMessage &&  (
+            {errorMessage && (
                 <div className='warningMessage'>
                     <p>{errorMessage}</p>
-                </div>
-            )}
-            {createUserMessage &&  (
-                <div className='successMessage'>
-                    <p>{createUserMessage}</p>
                 </div>
             )}
             <div>
@@ -105,4 +99,4 @@ const SignIn = () => {
     )
 }
 
-export default SignIn;;
+export default SignIn;

@@ -13,14 +13,13 @@ import { setDoc, doc } from 'firebase/firestore';
 const Signup = () => {
 
     const reference = useRef()
-    const [ toggle, setToggle ] = useState(false)
-    const [ userName, setUserName ] = useState("")
-    const [ passwordUser, setPassWordUser ] = useState("")
-    const [ emailUser, setEmailUser ] = useState("")
-    const [ avatarURL, setAvatarURL ] = useState("")
-    const [ progressUpload, setProgressUpload] = useState(null)
-
-    let counter = 0
+    const [toggle, setToggle] = useState(false)
+    const [userName, setUserName] = useState("")
+    const [passwordUser, setPassWordUser] = useState("")
+    const [emailUser, setEmailUser] = useState("")
+    const [avatarURL, setAvatarURL] = useState("")
+    const [progressUpload, setProgressUpload] = useState(null)
+    const [ counterLoadingCreateUser, setCounterLoadingCreateUser ] = useState(0)
 
     const navigate = useNavigate()
 
@@ -52,22 +51,21 @@ const Signup = () => {
 
         uploadTask.on('state_changed',
             (snapshot) => {
-
-                counter = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-                setProgressUpload(Math.trunc(counter) * 2.38)
+                setProgressUpload(Math.trunc((snapshot.bytesTransferred / snapshot.totalBytes) * 100) * 2.38)
+                setCounterLoadingCreateUser(((snapshot.bytesTransferred / snapshot.totalBytes) * 100).toFixed())
 
             },
             (error) => {
                 // Handle unsuccessful uploads
             },
-             () => {
+            () => {
                 getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-                    
+
                     updateProfile(auth.currentUser, {
                         displayName: userName,
                         photoURL: downloadURL
                     })
-                    
+
                     setDoc(doc(db, "users", user.user.uid), {
                         uid: user.user.uid,
                         displayName: userName,
@@ -75,7 +73,7 @@ const Signup = () => {
                         photoURL: downloadURL
                     });
                     setDoc(doc(db, "userChats", user.user.uid), {});
-                    
+
                     navigate('/home')
                 });
 
@@ -136,21 +134,17 @@ const Signup = () => {
                         alt='avatar image user'></img>
                     <span>Pick your avatar. </span>
                 </label>
-                <button >Sign-up</button>
+                <button>Sign-up</button>
             </form>
-            {progressUpload && (<div>
-                <span>Creating User...</span>
-                <span style={{ width: `${progressUpload}px` }} className={style.barUpload}></span>
-            </div>
+            {progressUpload && (
+                <div className={style.progressBarLoading}>
+                    <span>Creating User : {counterLoadingCreateUser}%</span>
+                    <span style={{ width: `${progressUpload}px` }} className={style.barUpload}></span>
+                </div>
             )}
             {errorAuthUser && (
                 <div className='warningMessage'>
                     <p>{errorAuthUser}</p>
-                </div>
-            )}
-            {createSuccessMessage && (
-                <div className='successMessage'>
-                    <p>{errorAuthUser ? "" : createSuccessMessage}</p>
                 </div>
             )}
             <div>

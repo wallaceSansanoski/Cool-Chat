@@ -1,5 +1,5 @@
 import style from './navibar.module.css'
-import { useContext, useState, useEffect } from 'react'
+import { useContext, useState } from 'react'
 import { authContext } from '../../AuthContext/authContext'
 import { signOut } from "firebase/auth";
 import { auth, db } from '../../service/db';
@@ -8,12 +8,12 @@ import { doc, onSnapshot } from "firebase/firestore";
 
 const Navibar = () => {
 
-    const [ user, setUser ] = useState()
+    const [user, setUser] = useState()
     const currentUser = useContext(authContext)
     const navigate = useNavigate()
 
 
-    const unsub = onSnapshot(doc(db, "users", currentUser.uid), (doc) => {
+    onSnapshot(doc(db, "users", currentUser.uid), (doc) => {
         setUser(doc.data())
     });
 

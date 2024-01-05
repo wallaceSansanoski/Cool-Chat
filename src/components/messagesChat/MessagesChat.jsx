@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect, useRef} from 'react';
+import { useContext, useState, useEffect, useRef } from 'react';
 import { CurrentChatContext } from '../../AuthContext/currentChatContext';
 import { authContext } from '../../AuthContext/authContext';
 import { doc, onSnapshot } from "firebase/firestore";
@@ -10,21 +10,19 @@ import UserFriendMessage from '../userFriendMessage/UserFriendMessage';
 const MessagesChat = () => {
 
     const currentUser = useContext(authContext)
-    const { state: user } = useContext(CurrentChatContext)
+    const { state: friendOfUser } = useContext(CurrentChatContext)
 
-    const currentUserTalking = currentUser.uid + user.user.uid
-    const freindCurrentUserTalking = user.user.uid + currentUser.uid
+    const currentUserTalking = currentUser.uid + friendOfUser.user.uid
+    const freindCurrentUserTalking = friendOfUser.user.uid + currentUser.uid
 
     const [currentUserMessages, setCurrentuserMessages] = useState()
     const [friendUserMessages, setFrienduserMessages] = useState()
     const [allMessages, setAllMessages] = useState([])
 
-    const  container = useRef()
+    const container = useRef()
 
 
     useEffect(() => {
-
-     setAllMessages([])
 
         onSnapshot(doc(db, "chats", currentUserTalking), (doc) => {
             setCurrentuserMessages(doc.data()?.messages)
@@ -34,35 +32,36 @@ const MessagesChat = () => {
             setFrienduserMessages(doc.data()?.messages)
         });
 
-    }, [user.user.uid])
+    }, [friendOfUser.user.uid])
 
     useEffect(() => {
 
-        if (currentUserMessages, friendUserMessages) {
-            setAllMessages(([...currentUserMessages, ...friendUserMessages]).sort((timeA, timeB) => timeA.date.seconds - timeB.date.seconds))
+        const bothUsersConected = currentUserMessages && freindCurrentUserTalking
+
+        if (bothUsersConected) {
+            setAllMessages(([...currentUserMessages, ...friendUserMessages])
+                .sort((timeA, timeB) => timeA.date.seconds - timeB.date.seconds))
         }
+
     }, [currentUserMessages, friendUserMessages])
 
     useEffect(() => {
-         container.current.scrollTo({top : container.current.scrollHeight  , behavior : 'smooth'})   
-        }, [currentUserMessages, friendUserMessages, allMessages])
-        
+        container.current.scrollTo({ top: container.current.scrollHeight, behavior: 'smooth' })
+    }, [currentUserMessages, friendUserMessages, allMessages])
+
 
     return (
         <div className={style.wrapperMessage} ref={container}>
             <div className={style.divC}  >
-            {
-                allMessages.map((messages) => {
-                    if (messages.sender === currentUser.uid) {
-                        return <CurrentUserMessage key={messages.id} message={messages}/>
+                {
+                    allMessages.map((messages) => {
+                        const userTalking = messages.sender === currentUser.uid
 
-                    }
-
-                    if (messages.sender === user.user.uid) {
-                        return <UserFriendMessage key={messages.id} message={messages} />
-                    }
-                })
-            }
+                        return userTalking
+                            ? <CurrentUserMessage key={messages.id} message={messages} />
+                            : <UserFriendMessage key={messages.id} message={messages} />
+                    })
+                }
             </div>
         </div>
     )

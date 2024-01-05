@@ -3,7 +3,21 @@
 .wrapperContainer{
     display: flex;
     flex-direction: column;
-    min-width: 270px;
     overflow: hidden;
-    height: 600px;
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+}
+
+@media(min-width : 450px){
+    .wrapperContainer {
+            display: flex;
+            flex-direction: column;
+            min-width: 270px;
+            overflow: hidden;
+            height: 600px;
+            width: 250px;
+            position: relative;
+            z-index: 0;
+        }
 }
