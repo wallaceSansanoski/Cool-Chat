@@ -1,8 +1,7 @@
-# React + Vite
+Cool Chat 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Created using react JS and Firebase in backend a real time chating. 
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+![Alt text](https://github.com/wallaceSansanoski/cool-chat/blob/main/login%20cool%20chat.PNG)
+![Alt text](https://github.com/wallaceSansanoski/cool-chat/blob/main/coolchat.PNG)
+![Alt text](https://github.com/wallaceSansanoski/cool-chat/blob/main/cool%20chat%202.PNG)
